@@ -21,4 +21,16 @@ class MemosController extends Controller
         Memo::create($main_content);
         return redirect()->route('index');
     }
+
+    public function edit(Request $request) {
+        $memo = Memo::find($request->id);
+        return view('edit', ['memo'=>$memo]);
+    }
+
+    public function update(Request $request) {
+        $memo = Memo::find($request->id);
+        $main_content = $request->validate(['main_content' => 'required|max:1000']);
+        $memo->fill($main_content)->save();
+        return redirect()->route('index');
+    }
 }
