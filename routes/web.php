@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\Memo;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +14,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MemosController@index')->name('index');
+Route::get('/create', 'MemosController@create')->name('create');
+Route::post('/store', 'MemosController@store')->name('store');
